@@ -4,10 +4,12 @@ using System.Collections;
 public class PlayerControl : MonoBehaviour {
 
     Animator NPCAnimator;
+	Rigidbody[] boneRig;
 
 	// Use this for initialization
 	void Start () {
         NPCAnimator = GetComponent<Animator>();
+		boneRig = GetComponentsInChildren<Rigidbody> ();
 	}
 	
 	// Update is called once per frame
@@ -54,5 +56,14 @@ public class PlayerControl : MonoBehaviour {
         {
             NPCAnimator.SetBool("sprinting", false);
         }
+
+		if (Input.GetKey("r"))
+		{
+			foreach (Rigidbody bone in boneRig) {
+				bone.isKinematic = false;
+			}
+			NPCAnimator.enabled = false;
+
+		}
     }
 }
