@@ -5,6 +5,7 @@ public class PlayerControl : MonoBehaviour {
 
     Animator NPCAnimator;
 	Rigidbody[] boneRig;
+	bool ragdollMode = false;
 
 	// Use this for initialization
 	void Start () {
@@ -57,13 +58,24 @@ public class PlayerControl : MonoBehaviour {
             NPCAnimator.SetBool("sprinting", false);
         }
 
-		if (Input.GetKey("r"))
+		if (Input.GetKeyDown("r"))
 		{
+			ragdollMode = !ragdollMode;
+
+		}
+
+		if (ragdollMode) {
 			foreach (Rigidbody bone in boneRig) {
 				bone.isKinematic = false;
 			}
 			NPCAnimator.enabled = false;
-
+		} else {
+			foreach (Rigidbody bone in boneRig) {
+				bone.isKinematic = true;
+			}
+			NPCAnimator.enabled = true;
 		}
+
+
     }
 }
