@@ -32,9 +32,6 @@ public class SceneControlScript : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Alpha5)) {
 			Application.LoadLevel (5);
 		}
-		if (Input.GetKeyDown (KeyCode.Alpha6)) {
-			Application.LoadLevel (6);
-		}
 
 	}
 }
