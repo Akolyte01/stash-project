@@ -1,22 +1,12 @@
 fileFormatVersion: 2
-guid: c18d9a31c387e2f48a11003476af4275
-labels:
-- Audio
-- Sound
-- FX
-- Footsteps
-- Carpet
-- Pack
-- Wav
-- Loop
-- Sprint
+guid: 1c30db6cd8fb645049fe02656a68d721
 AudioImporter:
   serializedVersion: 6
   defaultSettings:
     loadType: 1
     sampleRateSetting: 0
     sampleRateOverride: 0
-    compressionFormat: 0
+    compressionFormat: 1
     quality: 0
     conversionMode: 0
   platformSettingOverrides: {}

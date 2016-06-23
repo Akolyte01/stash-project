@@ -6,7 +6,8 @@ public class SoundScript : MonoBehaviour {
 	bool isgrounded = true;
 	public AudioSource audio;
 	public AudioClip[] regular;
-	//public AudioClip[] water;
+	public AudioClip[] water;
+	public AudioClip[] sand;
 	bool step = true;
 	float audioStepLengthWalk = 0.45f;
 	float audioStepLengthRun = 0.25f;
@@ -19,54 +20,38 @@ public class SoundScript : MonoBehaviour {
 
 	}
 
-	void OnControllerColliderHit(ControllerColliderHit hit) {
+	IEnumerator OnControllerColliderHit(ControllerColliderHit hit) {
 		CharacterController controller = GetComponent<CharacterController>();
-		Debug.Log ("hit");
-
-		Debug.Log (controller.isGrounded + " ground");
-
-		Debug.Log (controller.velocity.magnitude < 7);
-
-		//Debug.Log (controller.velocity.magnitude > 5); //FALSE
-
-		Debug.Log ((hit.gameObject.tag == "Floor") + " floor");
-		Debug.Log (step + " step");
 
 		if (controller.isGrounded && controller.velocity.magnitude < 7
-			//&& controller.velocity.magnitude > 5
-			&& hit.gameObject.tag == "Floor"  && step == true
-			//|| controller.isGrounded && controller.velocity.magnitude < 7 && controller.velocity.magnitude > 5 && hit.gameObject.tag == "Floor" && step == true
-		) {
-
-			Debug.Log ("CALLED");
-			WalkOnConcrete();
-		
+			&& controller.velocity.magnitude > 1 && hit.gameObject.tag == "Floor"  && step == true) {
+			//WalkOnFloor(); //not getting called for some reason... guess I will just not put it in its own function...
+			step = false;
+			audio.clip = regular[Random.Range(0, 3)]; //3 is the length of the array
+			audio.volume = .1f;
+			audio.Play();
+			yield return new WaitForSeconds(audioStepLengthWalk);
+			step = true;
+		}
+		if (controller.isGrounded && controller.velocity.magnitude < 7
+			&& controller.velocity.magnitude > 1 && hit.gameObject.tag == "WetFloor"  && step == true) {
+			step = false;
+			audio.clip = water[Random.Range(0, 7)];
+			audio.volume = .1f;
+			audio.Play();
+			yield return new WaitForSeconds(audioStepLengthWalk);
+			step = true;
+		}
+		if (controller.isGrounded && controller.velocity.magnitude < 7
+			&& controller.velocity.magnitude > 1 && hit.gameObject.tag == "SandyFloor"  && step == true) {
+			step = false;
+			audio.clip = sand[Random.Range(0, 10)];
+			audio.volume = .1f;
+			audio.Play();
+			yield return new WaitForSeconds(audioStepLengthWalk);
+			step = true;
 		}
 	}
-
-	IEnumerator WalkOnConcrete() {
-		step = false;
-		audio.clip = regular[Random.Range(0, 3)];
-		audio.volume = .1f;
-		audio.Play();
-		yield return new WaitForSeconds(audioStepLengthWalk);
-		step = true;
-	}
-
-
-//
-//	void OnCollisionEnter (Collision col) {
-//		if(col.gameObject.tag == "Floor")
-//		{
-//			Debug.Log ("Floor");
-//		}
-//	}
-//
-//	void OnCollisionStay (Collision col) {
-//		if(col.gameObject.tag == "Floor")
-//		{
-//			Debug.Log ("Floor STAY");
-//		}
-//	}
+		
 
 }
