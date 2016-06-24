@@ -77,12 +77,12 @@ public class PlayerControl : MonoBehaviour {
 		}
 
         //Handles the scaling
-        if (Input.GetKey(KeyCode.G) && transform.localScale.x < 2)
+        if (Input.GetKey(KeyCode.G) && transform.localScale.x < 2 && !ragdollMode)
         {
             transform.localScale += new Vector3(0.1F, 0, 0);
         }
 
-        if (Input.GetKey(KeyCode.H) && transform.localScale.x > 1)
+        if (Input.GetKey(KeyCode.H) && transform.localScale.x > 1 && !ragdollMode)
         {
             transform.localScale -= new Vector3(0.1F, 0, 0);
         }
