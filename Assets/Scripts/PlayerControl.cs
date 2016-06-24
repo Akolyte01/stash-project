@@ -76,6 +76,17 @@ public class PlayerControl : MonoBehaviour {
 			NPCAnimator.enabled = true;
 		}
 
+        //Handles the scaling
+        if (Input.GetKey(KeyCode.G) && transform.localScale.x < 2)
+        {
+            transform.localScale += new Vector3(0.1F, 0, 0);
+        }
 
+        if (Input.GetKey(KeyCode.H) && transform.localScale.x > 1)
+        {
+            transform.localScale -= new Vector3(0.1F, 0, 0);
+        }
+        //End of scaling
     }
+
 }
