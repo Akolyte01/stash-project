@@ -4,30 +4,54 @@ using System.Collections;
 public class SoundScript : MonoBehaviour {
 
 	bool isgrounded = true;
-
+	public AudioSource audio;
+	public AudioClip[] regular;
+	public AudioClip[] water;
+	public AudioClip[] sand;
+	bool step = true;
+	float audioStepLengthWalk = 0.45f;
+	float audioStepLengthRun = 0.25f;
 
 	void Start() {
-		
+		step = true;
 	}
 		
 	void Update () {
-	
+
 	}
 
-	void OnCollisionEnter (Collision col) {
-		if(col.gameObject.tag == "Floor" || col.gameObject.tag == "Stairs")
-		{
-			isgrounded = true;
-			Debug.Log (isgrounded);
-		}
-	}
+	IEnumerator OnControllerColliderHit(ControllerColliderHit hit) {
+		CharacterController controller = GetComponent<CharacterController>();
 
-	void OnCollisionExit (Collision col) {
-		if(col.gameObject.tag == "Floor" || col.gameObject.tag == "Stairs")
-		{
-			isgrounded = false;
-			Debug.Log (isgrounded);
+		if (controller.isGrounded && controller.velocity.magnitude < 7
+			&& controller.velocity.magnitude > 1 && hit.gameObject.tag == "Floor"  && step == true) {
+			//WalkOnFloor(); //not getting called for some reason... guess I will just not put it in its own function...
+			step = false;
+			audio.clip = regular[Random.Range(0, 3)]; //3 is the length of the array
+			audio.volume = .1f;
+			audio.Play();
+			yield return new WaitForSeconds(audioStepLengthWalk);
+			step = true;
+		}
+		if (controller.isGrounded && controller.velocity.magnitude < 7
+			&& controller.velocity.magnitude > 1 && hit.gameObject.tag == "WetFloor"  && step == true) {
+			step = false;
+			audio.clip = water[Random.Range(0, 7)];
+			audio.volume = .1f;
+			audio.Play();
+			yield return new WaitForSeconds(audioStepLengthWalk);
+			step = true;
+		}
+		if (controller.isGrounded && controller.velocity.magnitude < 7
+			&& controller.velocity.magnitude > 1 && hit.gameObject.tag == "SandyFloor"  && step == true) {
+			step = false;
+			audio.clip = sand[Random.Range(0, 10)];
+			audio.volume = .1f;
+			audio.Play();
+			yield return new WaitForSeconds(audioStepLengthWalk);
+			step = true;
 		}
 	}
+		
 
 }

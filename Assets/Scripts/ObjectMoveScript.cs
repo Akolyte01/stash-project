@@ -14,9 +14,9 @@ public class ObjectMoveScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter (Collision col) {
-		Debug.Log ("CALLED " + col.gameObject.name + " " + col.gameObject.tag);
+		//Debug.Log ("CALLED " + col.gameObject.name + " " + col.gameObject.tag);
 		if(col.gameObject.tag == "Player") {
-			Debug.Log ("Is Player");
+			//Debug.Log ("Is Player");
 		}
 	}
 }
