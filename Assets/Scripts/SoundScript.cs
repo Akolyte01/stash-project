@@ -8,6 +8,8 @@ public class SoundScript : MonoBehaviour {
 	public AudioClip[] regular;
 	public AudioClip[] water;
 	public AudioClip[] sand;
+    public AudioClip[] carpet;
+    public AudioClip[] blood;
 	bool step = true;
 	float audioStepLengthWalk = 0.45f;
 	float audioStepLengthRun = 0.25f;
@@ -51,7 +53,27 @@ public class SoundScript : MonoBehaviour {
 			yield return new WaitForSeconds(audioStepLengthWalk);
 			step = true;
 		}
-	}
+        if (controller.isGrounded && controller.velocity.magnitude < 7
+            && controller.velocity.magnitude > 1 && hit.gameObject.tag == "Carpet" && step == true)
+        {
+            step = false;
+            audio.clip = carpet[Random.Range(0, 2)];
+            audio.volume = .1f;
+            audio.Play();
+            yield return new WaitForSeconds(audioStepLengthWalk);
+            step = true;
+        }
+        if (controller.isGrounded && controller.velocity.magnitude < 7
+            && controller.velocity.magnitude > 1 && hit.gameObject.tag == "Blood" && step == true)
+        {
+            step = false;
+            audio.clip = blood[Random.Range(0, 7)];
+            audio.volume = .1f;
+            audio.Play();
+            yield return new WaitForSeconds(audioStepLengthWalk);
+            step = true;
+        }
+    }
 		
 
 }
