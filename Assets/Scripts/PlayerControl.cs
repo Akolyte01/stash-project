@@ -5,12 +5,19 @@ public class PlayerControl : MonoBehaviour {
 
     Animator NPCAnimator;
 	Rigidbody[] boneRig;
+    CapsuleCollider playerCollider;
+    CharacterController playerController;
+    MouseLook mouseLook;
+
 	bool ragdollMode = false;
 
 	// Use this for initialization
 	void Start () {
         NPCAnimator = GetComponent<Animator>();
 		boneRig = GetComponentsInChildren<Rigidbody> ();
+        playerCollider = GetComponent<CapsuleCollider>();
+        playerController = GetComponent<CharacterController>();
+        mouseLook = GetComponent<MouseLook>();
 	}
 	
 	// Update is called once per frame
@@ -69,12 +76,20 @@ public class PlayerControl : MonoBehaviour {
 				bone.isKinematic = false;
 			}
 			NPCAnimator.enabled = false;
+            playerCollider.enabled = false;
+            playerController.enabled = false;
+            mouseLook.enabled = false;
 		} else {
 			foreach (Rigidbody bone in boneRig) {
 				bone.isKinematic = true;
 			}
 			NPCAnimator.enabled = true;
+            playerController.enabled = true;
+            mouseLook.enabled = true;
+            playerCollider.enabled = true;
 		}
+
+
 
         //Handles the scaling
         if (Input.GetKey(KeyCode.G) && transform.localScale.x < 2 && !ragdollMode)
