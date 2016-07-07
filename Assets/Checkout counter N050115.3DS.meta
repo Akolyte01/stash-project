@@ -1,0 +1,279 @@
+fileFormatVersion: 2
+guid: 3c7a0340fc2194a0592a87f392d273f5
+timeCreated: 1467910819
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: hyper sa10
+    100004: hyper sa11
+    100006: hyper sa12
+    100008: hyper sa13
+    100010: hyper sa14
+    100012: hyper sa15
+    100014: hyper sa16
+    100016: hyper sa17
+    100018: hyper sa18
+    100020: hyper sa19
+    100022: hyper sa20
+    100024: hyper sa21
+    100026: hyper sa22
+    100028: hyper sa23
+    100030: hyper sa24
+    100032: hyper sa25
+    100034: hyper sa26
+    100036: hyper sa27
+    100038: hyper sa28
+    100040: hyper sa29
+    100042: hyper sa30
+    100044: hyper sa31
+    100046: hyper sa32
+    100048: hyper san0
+    100050: hyper san1
+    100052: hyper san2
+    100054: hyper san3
+    100056: hyper san4
+    100058: hyper san5
+    100060: hyper san6
+    100062: hyper san7
+    100064: hyper san8
+    100066: hyper san9
+    100068: hyper sand
+    100070: hyper sta0
+    100072: hyper sta1
+    100074: hyper sta2
+    100076: hyper sta3
+    100078: hyper sta4
+    100080: hyper sta5
+    100082: hyper sta6
+    100084: hyper sta7
+    100086: hyper stan
+    400000: //RootNode
+    400002: hyper sa10
+    400004: hyper sa11
+    400006: hyper sa12
+    400008: hyper sa13
+    400010: hyper sa14
+    400012: hyper sa15
+    400014: hyper sa16
+    400016: hyper sa17
+    400018: hyper sa18
+    400020: hyper sa19
+    400022: hyper sa20
+    400024: hyper sa21
+    400026: hyper sa22
+    400028: hyper sa23
+    400030: hyper sa24
+    400032: hyper sa25
+    400034: hyper sa26
+    400036: hyper sa27
+    400038: hyper sa28
+    400040: hyper sa29
+    400042: hyper sa30
+    400044: hyper sa31
+    400046: hyper sa32
+    400048: hyper san0
+    400050: hyper san1
+    400052: hyper san2
+    400054: hyper san3
+    400056: hyper san4
+    400058: hyper san5
+    400060: hyper san6
+    400062: hyper san7
+    400064: hyper san8
+    400066: hyper san9
+    400068: hyper sand
+    400070: hyper sta0
+    400072: hyper sta1
+    400074: hyper sta2
+    400076: hyper sta3
+    400078: hyper sta4
+    400080: hyper sta5
+    400082: hyper sta6
+    400084: hyper sta7
+    400086: hyper stan
+    2300000: hyper sa10
+    2300002: hyper sa11
+    2300004: hyper sa12
+    2300006: hyper sa13
+    2300008: hyper sa14
+    2300010: hyper sa15
+    2300012: hyper sa16
+    2300014: hyper sa17
+    2300016: hyper sa18
+    2300018: hyper sa19
+    2300020: hyper sa20
+    2300022: hyper sa21
+    2300024: hyper sa22
+    2300026: hyper sa23
+    2300028: hyper sa24
+    2300030: hyper sa25
+    2300032: hyper sa26
+    2300034: hyper sa27
+    2300036: hyper sa28
+    2300038: hyper sa29
+    2300040: hyper sa30
+    2300042: hyper sa31
+    2300044: hyper sa32
+    2300046: hyper san0
+    2300048: hyper san1
+    2300050: hyper san2
+    2300052: hyper san3
+    2300054: hyper san4
+    2300056: hyper san5
+    2300058: hyper san6
+    2300060: hyper san7
+    2300062: hyper san8
+    2300064: hyper san9
+    2300066: hyper sta0
+    2300068: hyper sta1
+    2300070: hyper sta2
+    2300072: hyper sta3
+    2300074: hyper sta4
+    2300076: hyper sta6
+    2300078: hyper sta7
+    3300000: hyper sa10
+    3300002: hyper sa11
+    3300004: hyper sa12
+    3300006: hyper sa13
+    3300008: hyper sa14
+    3300010: hyper sa15
+    3300012: hyper sa16
+    3300014: hyper sa17
+    3300016: hyper sa18
+    3300018: hyper sa19
+    3300020: hyper sa20
+    3300022: hyper sa21
+    3300024: hyper sa22
+    3300026: hyper sa23
+    3300028: hyper sa24
+    3300030: hyper sa25
+    3300032: hyper sa26
+    3300034: hyper sa27
+    3300036: hyper sa28
+    3300038: hyper sa29
+    3300040: hyper sa30
+    3300042: hyper sa31
+    3300044: hyper sa32
+    3300046: hyper san0
+    3300048: hyper san1
+    3300050: hyper san2
+    3300052: hyper san3
+    3300054: hyper san4
+    3300056: hyper san5
+    3300058: hyper san6
+    3300060: hyper san7
+    3300062: hyper san8
+    3300064: hyper san9
+    3300066: hyper sta0
+    3300068: hyper sta1
+    3300070: hyper sta2
+    3300072: hyper sta3
+    3300074: hyper sta4
+    3300076: hyper sta6
+    3300078: hyper sta7
+    4300000: hyper sta0
+    4300002: hyper sta1
+    4300004: hyper sta2
+    4300006: hyper sta3
+    4300008: hyper sta4
+    4300010: hyper sta6
+    4300012: hyper sta7
+    4300014: hyper san0
+    4300016: hyper san1
+    4300018: hyper san2
+    4300020: hyper san3
+    4300022: hyper san4
+    4300024: hyper san5
+    4300026: hyper san6
+    4300028: hyper san7
+    4300030: hyper san8
+    4300032: hyper san9
+    4300034: hyper sa10
+    4300036: hyper sa11
+    4300038: hyper sa12
+    4300040: hyper sa13
+    4300042: hyper sa14
+    4300044: hyper sa15
+    4300046: hyper sa16
+    4300048: hyper sa17
+    4300050: hyper sa18
+    4300052: hyper sa19
+    4300054: hyper sa20
+    4300056: hyper sa21
+    4300058: hyper sa22
+    4300060: hyper sa23
+    4300062: hyper sa24
+    4300064: hyper sa25
+    4300066: hyper sa26
+    4300068: hyper sa27
+    4300070: hyper sa28
+    4300072: hyper sa29
+    4300074: hyper sa30
+    4300076: hyper sa31
+    4300078: hyper sa32
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
