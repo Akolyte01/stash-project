@@ -14,7 +14,8 @@ public class IdleState : NPCState{
     {
         Debug.Log("Idle");
         idleTimer += Time.deltaTime;
-        if (idleTimer > 4.0f) {
+		//goes back into Patrol after 4 seconds, unless IdleChance is 100% (always idling, for shoppers)
+		if (idleTimer > 4.0f && ( npc.idleChance < 100) ) {
             ToPatrolState();
         }
 

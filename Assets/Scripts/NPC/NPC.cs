@@ -8,11 +8,10 @@ public class NPC : MonoBehaviour {
     public float walkSpeed;
     public float penaltyMult;
     public bool willPursue;
-    public float idleChance;
+    public float idleChance; //should be between 0 and 100
 
 
     public Player player;
-
 
 
     [HideInInspector] public NPCState currentState;

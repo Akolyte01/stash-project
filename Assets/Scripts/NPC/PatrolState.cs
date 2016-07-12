@@ -4,6 +4,8 @@ using System.Collections;
 public class PatrolState : NPCState {
     private readonly NPC npc;
 
+	private float idleChecker;
+
     public PatrolState(NPC npc) {
         this.npc = npc;
     }
@@ -14,6 +16,15 @@ public class PatrolState : NPCState {
         Debug.Log("Patrol");
         checkSuspicious();
         checkAlerted();
+	
+		//every 5 second or so, check to enter idle
+		idleChecker += Time.deltaTime;
+		if (idleChecker > 5.0f) {
+			idleChecker = 0f;
+			checkIdleChance();
+		}
+
+
     }
 
     public void ToPatrolState()
@@ -47,4 +58,14 @@ public class PatrolState : NPCState {
             ToPursueState();
         }
     }
+
+	private void checkIdleChance() {
+		if (npc.idleChance > 0) {
+			float chance = Random.Range(0f,100f);
+			Debug.Log ("Could idle if > than " + chance);
+			if (npc.idleChance > chance) {
+				ToIdleState ();
+			}
+		}
+	}
 }
