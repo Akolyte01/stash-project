@@ -41,11 +41,9 @@ public class FootstepScript : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Debug.Log(hit.normal);
         if (hit.normal == Vector3.up)
         {
             currentSurface = hit.gameObject.tag;
-            //Debug.Log(currentSurface);
         }
     }
 }
