@@ -34,7 +34,7 @@ public class PatrolState : NPCState {
     {
         // Set the ai agents movement speed to patrol speed
         npc.nav.speed = npc.walkSpeed;
-
+        npc.npcAnimator.SetFloat("Speed", npc.nav.speed);
         // Create two Vector3 variables, one to buffer the ai agents local position, the other to
         // buffer the next waypoints position
         Vector3 tempLocalPosition;

@@ -4,7 +4,8 @@ using System.Collections;
 [RequireComponent (typeof(NavMeshAgent))]
 public class NPC : MonoBehaviour {
 
-    
+
+    public Animator npcAnimator;
     public float perceptionDistance;
     public float fieldOfView;
     public float walkSpeed;
@@ -39,6 +40,7 @@ public class NPC : MonoBehaviour {
 
         nav = GetComponent<NavMeshAgent>();
         maxWaypoint = waypoints.Length - 1;
+        npcAnimator = GetComponent<Animator>();
     }
 
     void Start() {
