@@ -5,6 +5,8 @@ public class PatrolState : NPCState {
     private readonly NPC npc;
 
 	private float idleChecker;
+    private int curWaypoint = 0;
+
 
     public PatrolState(NPC npc) {
         this.npc = npc;
@@ -13,7 +15,7 @@ public class PatrolState : NPCState {
 
     public void UpdateState()
     {
-        Debug.Log("Patrol");
+
         checkSuspicious();
         checkAlerted();
 	
@@ -24,8 +26,47 @@ public class PatrolState : NPCState {
 			checkIdleChance();
 		}
 
+        Patrolling();
 
     }
+
+    public void Patrolling()
+    {
+        // Set the ai agents movement speed to patrol speed
+        npc.nav.speed = npc.walkSpeed;
+
+        // Create two Vector3 variables, one to buffer the ai agents local position, the other to
+        // buffer the next waypoints position
+        Vector3 tempLocalPosition;
+        Vector3 tempWaypointPosition;
+
+        // Agents position (x, set y to 0, z)
+        tempLocalPosition = npc.transform.position;
+        tempLocalPosition.y = 0f;
+
+        // Current waypoints position (x, set y to 0, z)
+        tempWaypointPosition = npc.waypoints[curWaypoint].position;
+        tempWaypointPosition.y = 0f;
+
+        // Is the distance between the agent and the current waypoint within the minWaypointDistance?
+        if (Vector3.Distance(tempLocalPosition, tempWaypointPosition) <= npc.minWaypointDistance)
+        {
+            // Have we reached the last waypoint?
+            if (curWaypoint == npc.maxWaypoint)
+                // If so, go back to the first waypoint and start over again
+                curWaypoint = 0;
+            else
+                // If we haven't reached the Last waypoint, just move on to the next one
+                curWaypoint++;
+        }
+
+        // Set the destination for the agent
+        // The navmesh agent is going to do the rest of the work
+        npc.nav.SetDestination(npc.waypoints[curWaypoint].position);
+    }
+
+
+
 
     public void ToPatrolState()
     {

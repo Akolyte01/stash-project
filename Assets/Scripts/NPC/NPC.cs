@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(NavMeshAgent))]
 public class NPC : MonoBehaviour {
 
+    
     public float perceptionDistance;
     public float fieldOfView;
     public float walkSpeed;
     public float penaltyMult;
     public bool willPursue;
     public float idleChance; //should be between 0 and 100
+    public Transform[] waypoints;
 
+    public float minWaypointDistance = 0.1f;
 
     public Player player;
 
@@ -22,6 +26,8 @@ public class NPC : MonoBehaviour {
 
     [HideInInspector] public bool alerted;
     [HideInInspector] public bool suspicious;
+    [HideInInspector] public NavMeshAgent nav;
+    [HideInInspector] public int maxWaypoint;
 
 
     // Use this for initialization
@@ -30,7 +36,9 @@ public class NPC : MonoBehaviour {
         idleState = new IdleState(this);
         pursueState = new PursueState(this);
         suspiciousState = new SuspiciousState(this);
-         
+
+        nav = GetComponent<NavMeshAgent>();
+        maxWaypoint = waypoints.Length - 1;
     }
 
     void Start() {
