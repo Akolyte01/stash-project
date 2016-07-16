@@ -12,10 +12,12 @@ public class IdleState : NPCState{
 
     public void UpdateState()
     {
+        
         //npc.npcAnimator.speed = 0;
         idleTimer += Time.deltaTime;
 		//goes back into Patrol after 4 seconds, unless IdleChance is 100% (always idling, for shoppers)
 		if (idleTimer > 4.0f && ( npc.idleChance < 100) ) {
+            npc.npcAnimator.SetBool("idle", false);
             ToPatrolState();
         }
 
@@ -54,6 +56,7 @@ public class IdleState : NPCState{
 
     private void checkAlerted() {
         if(npc.alerted && npc.willPursue) {
+            npc.npcAnimator.SetBool("alert", true);
             ToPursueState();
         }
     }

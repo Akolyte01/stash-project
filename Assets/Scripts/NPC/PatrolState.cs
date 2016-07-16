@@ -34,7 +34,6 @@ public class PatrolState : NPCState {
     {
         // Set the ai agents movement speed to patrol speed
         npc.nav.speed = npc.walkSpeed;
-        npc.npcAnimator.SetFloat("Speed", npc.nav.speed);
         // Create two Vector3 variables, one to buffer the ai agents local position, the other to
         // buffer the next waypoints position
         Vector3 tempLocalPosition;
@@ -96,6 +95,7 @@ public class PatrolState : NPCState {
 
     private void checkAlerted() {
         if(npc.alerted && npc.willPursue) {
+            npc.npcAnimator.SetBool("alert", true);
             ToPursueState();
         }
     }
@@ -105,7 +105,9 @@ public class PatrolState : NPCState {
 			float chance = Random.Range(0f,100f);
 			Debug.Log ("Could idle if > than " + chance);
 			if (npc.idleChance > chance) {
-				ToIdleState ();
+                npc.npcAnimator.SetBool("idle", true);
+                npc.nav.velocity = new Vector3(0,0,0);
+                ToIdleState ();
 			}
 		}
 	}

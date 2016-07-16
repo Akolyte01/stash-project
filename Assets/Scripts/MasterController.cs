@@ -28,7 +28,7 @@ public class MasterController : MonoBehaviour {
             player.StopSteal();
         }
 
-        if (suspicionLevel >= 100) {
+        if (suspicionLevel >= 25) {
             foreach(NPC npc in NPCs) {
                 npc.alerted = true;
             }
