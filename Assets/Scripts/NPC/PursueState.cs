@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PursueState : NPCState{
     private readonly NPC npc;
+    private float secondsInAdvance = 3;
+    GameObject player = GameObject.FindGameObjectWithTag("Player");
 
     public PursueState(NPC npc) {
         this.npc = npc;
@@ -10,7 +12,12 @@ public class PursueState : NPCState{
 
     public void UpdateState()
     {
-        Debug.Log("Pursue");
+        Vector3 finalPos = player.transform.position;
+        Vector3 velocity = player.GetComponent<Rigidbody>().velocity;
+        velocity *= secondsInAdvance;
+        finalPos += velocity;
+
+        npc.nav.SetDestination(finalPos);
     }
 
     public void ToPatrolState()
