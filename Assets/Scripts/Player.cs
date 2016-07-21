@@ -11,7 +11,8 @@ public class Player : MonoBehaviour {
     CapsuleCollider playerCollider;
     CharacterController playerController;
     MouseLook mouseLook;
-    bool stealing = false;
+    [HideInInspector] public bool stealing = false;
+    [HideInInspector] public bool caught = false;
 
 	bool ragdollMode = false;
 
@@ -30,32 +31,18 @@ public class Player : MonoBehaviour {
         HandleMovement();
         HandleScaling();
 
-        if (Input.GetKeyDown("f"))
+        if (Input.GetKeyDown("e"))
         {
-            StartSteal();
+            stealing = true;
         }
 
-		if (Input.GetKeyDown("r"))
-		{
-            ragdollMode = !ragdollMode;
-            HandleRagdoll();
-		}
+		//if (Input.GetKeyDown("r"))
+		//{
+  //          ragdollMode = !ragdollMode;
+  //          HandleRagdoll();
+		//}
     }
 
-    public void StartSteal()
-    {
-        stealing = true;
-    }
-
-    public void StopSteal()
-    {
-        stealing = false;
-    }
-
-    public bool IsStealing()
-    {
-        return stealing;
-    }
 
     void HandleMovement()
     {
@@ -64,37 +51,37 @@ public class Player : MonoBehaviour {
         playerAnimator.SetFloat("vSpeed", v);
         playerAnimator.SetFloat("hSpeed", h);
 
-        if (Input.GetKey("q"))
-        {
-            if (h == 0f && v == 0f)
-            {
-                playerAnimator.SetBool("turningLeft", true);
-            }
-            else
-            {
-                transform.Rotate(Vector3.up * Time.deltaTime * -70.0f);
-            }
-        }
-        else
-        {
-            playerAnimator.SetBool("turningLeft", false);
-        }
+        //if (Input.GetKey("q"))
+        //{
+        //    if (h == 0f && v == 0f)
+        //    {
+        //        playerAnimator.SetBool("turningLeft", true);
+        //    }
+        //    else
+        //    {
+        //        transform.Rotate(Vector3.up * Time.deltaTime * -70.0f);
+        //    }
+        //}
+        //else
+        //{
+        //    playerAnimator.SetBool("turningLeft", false);
+        //}
 
-        if (Input.GetKey("e"))
-        {
-            if (h == 0f && v == 0f)
-            {
-                playerAnimator.SetBool("turningRight", true);
-            }
-            else
-            {
-                transform.Rotate(Vector3.up * Time.deltaTime * 70.0f);
-            }
-        }
-        else
-        {
-            playerAnimator.SetBool("turningRight", false);
-        }
+        //if (Input.GetKey("e"))
+        //{
+        //    if (h == 0f && v == 0f)
+        //    {
+        //        playerAnimator.SetBool("turningRight", true);
+        //    }
+        //    else
+        //    {
+        //        transform.Rotate(Vector3.up * Time.deltaTime * 70.0f);
+        //    }
+        //}
+        //else
+        //{
+        //    playerAnimator.SetBool("turningRight", false);
+        //}
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -131,6 +118,11 @@ public class Player : MonoBehaviour {
             mouseLook.enabled = true;
             playerCollider.enabled = true;
         }
+    }
+
+    public void ActivateRagdoll() {
+        ragdollMode = true;
+        HandleRagdoll();
     }
 
     void HandleScaling()

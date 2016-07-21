@@ -3,6 +3,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class PursueState : NPCState{
     private readonly NPC npc;
@@ -41,5 +42,12 @@ public class PursueState : NPCState{
     public void ToIdleState()
     {
         npc.currentState = npc.idleState;
-    } 
+    }
+
+    public void TouchedPlayer() {
+        npc.player.caught = true;
+        npc.npcAnimator.SetBool("idle", true);
+        npc.nav.velocity = new Vector3(0,0,0);
+        ToIdleState();
+    }
 }

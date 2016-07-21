@@ -14,4 +14,6 @@ public interface NPCState{
     void ToPursueState();
 
     void ToIdleState();
+
+    void TouchedPlayer();
 }

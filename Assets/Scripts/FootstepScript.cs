@@ -25,18 +25,20 @@ public class FootstepScript : MonoBehaviour
 
     void triggerFootstep()
     {
+        
         if (currentSurface == surface0tag)
         {
             source.PlayOneShot(footstep0, .7f);
         }
-        if (currentSurface == surface1tag)
+        else if (currentSurface == surface1tag)
         {
             source.PlayOneShot(footstep1, .5f);
         }
-        if (currentSurface == surface2tag)
+        else if (currentSurface == surface2tag)
         {
             source.PlayOneShot(footstep2, .7f);
         }
+        else {  source.PlayOneShot(footstep1, .5f); }
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)

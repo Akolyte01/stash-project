@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class SuspiciousState : NPCState
 {
@@ -47,5 +48,9 @@ public class SuspiciousState : NPCState
         if(npc.alerted && npc.willPursue) {
             ToPursueState();
         }
-    } 
+    }
+
+    public void TouchedPlayer() {
+
+    }
 }

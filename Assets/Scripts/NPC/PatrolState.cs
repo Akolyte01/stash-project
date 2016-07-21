@@ -105,7 +105,6 @@ public class PatrolState : NPCState {
 	private void checkIdleChance() {
 		if (npc.idleChance > 0) {
 			float chance = Random.Range(0f,100f);
-			Debug.Log ("Could idle if > than " + chance);
 			if (npc.idleChance > chance) {
                 npc.npcAnimator.SetBool("idle", true);
                 npc.nav.velocity = new Vector3(0,0,0);
@@ -113,4 +112,6 @@ public class PatrolState : NPCState {
 			}
 		}
 	}
+
+    public void TouchedPlayer() { }
 }

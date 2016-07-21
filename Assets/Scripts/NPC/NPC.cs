@@ -82,7 +82,7 @@ public class NPC : MonoBehaviour {
                 } else { Debug.Log(rootTransform.gameObject); } 
             }
         }
-        Debug.DrawRay(outerPoint,vectorToObject,Color.white, 99, false);
+        Debug.DrawRay(outerPoint,vectorToObject,Color.white, 1, false);
         return -1.0f;
     }
 
@@ -93,6 +93,19 @@ public class NPC : MonoBehaviour {
     public float getPenalty()
     {
         return penaltyMult;
+    }
+
+    public void OnTriggerEnter(Collider collider) {
+         Transform rootTransform = collider.transform;
+         while(rootTransform.parent != null){
+            rootTransform = rootTransform.parent;
+         }
+
+         if(rootTransform.gameObject == player.gameObject) {
+            currentState.TouchedPlayer();
+         }
+
+        
     }
 
 }

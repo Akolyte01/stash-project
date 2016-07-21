@@ -2,6 +2,7 @@
 //Jeffrey, Olivia, Scott, Stephanie
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class IdleState : NPCState{
     private readonly NPC npc;
@@ -61,5 +62,9 @@ public class IdleState : NPCState{
             npc.npcAnimator.SetBool("alert", true);
             ToPursueState();
         }
+    }
+
+    public void TouchedPlayer() {
+
     }
 }

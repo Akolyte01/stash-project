@@ -17,7 +17,7 @@ public class MenuScript : MonoBehaviour {
         startText = startText.GetComponent<Button>();
         exitText = exitText.GetComponent<Button>();
         quitMenu.enabled = false;
-        hud.enabled = false;
+        //hud.enabled = false;
 	}
 	
 	public void ExitPress()
@@ -38,6 +38,8 @@ public class MenuScript : MonoBehaviour {
     {
 
         SceneManager.LoadScene("DefaultScene");
+        hud.enabled = true;
+        this.enabled = false;
     }
 
     public void ExitGame()
