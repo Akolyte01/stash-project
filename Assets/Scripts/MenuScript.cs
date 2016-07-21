@@ -8,16 +8,13 @@ public class MenuScript : MonoBehaviour {
     public Canvas quitMenu;
     public Button startText;
     public Button exitText;
-    public Canvas hud;
 
 	// Use this for initialization
 	void Start () {
         quitMenu = quitMenu.GetComponent<Canvas>();
-        hud = hud.GetComponent<Canvas>();
         startText = startText.GetComponent<Button>();
         exitText = exitText.GetComponent<Button>();
         quitMenu.enabled = false;
-        //hud.enabled = false;
 	}
 	
 	public void ExitPress()
@@ -38,8 +35,6 @@ public class MenuScript : MonoBehaviour {
     {
 
         SceneManager.LoadScene("DefaultScene");
-        hud.enabled = true;
-        this.enabled = false;
     }
 
     public void ExitGame()
