@@ -51,38 +51,6 @@ public class Player : MonoBehaviour {
         playerAnimator.SetFloat("vSpeed", v);
         playerAnimator.SetFloat("hSpeed", h);
 
-        //if (Input.GetKey("q"))
-        //{
-        //    if (h == 0f && v == 0f)
-        //    {
-        //        playerAnimator.SetBool("turningLeft", true);
-        //    }
-        //    else
-        //    {
-        //        transform.Rotate(Vector3.up * Time.deltaTime * -70.0f);
-        //    }
-        //}
-        //else
-        //{
-        //    playerAnimator.SetBool("turningLeft", false);
-        //}
-
-        //if (Input.GetKey("e"))
-        //{
-        //    if (h == 0f && v == 0f)
-        //    {
-        //        playerAnimator.SetBool("turningRight", true);
-        //    }
-        //    else
-        //    {
-        //        transform.Rotate(Vector3.up * Time.deltaTime * 70.0f);
-        //    }
-        //}
-        //else
-        //{
-        //    playerAnimator.SetBool("turningRight", false);
-        //}
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
             playerAnimator.SetBool("sprinting", true);

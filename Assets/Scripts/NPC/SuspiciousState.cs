@@ -12,9 +12,29 @@ public class SuspiciousState : NPCState
 
     public void UpdateState()
     {
-        Debug.Log("suspicious");
+
+        Vector3 directionToPlayer = npc.player.transform.position - npc.transform.position;
+        float angle = Vector3.Angle(npc.transform.forward, directionToPlayer);
+        if(Vector3.Cross(npc.transform.forward, directionToPlayer).y < 0) {
+            angle = -angle;
+        }
+
+        npc.npcAnimator.SetBool("turningLeft", false);
+        npc.npcAnimator.SetBool("turningRight", false);
+
         checkLOS();
         checkAlerted();
+
+        if(Mathf.Abs(angle) > 15.0f) {
+            if(angle > 0) {
+                npc.npcAnimator.SetBool("turningRight", true);
+                
+            } else{
+                npc.npcAnimator.SetBool("turningLeft", true);
+            }
+        }
+
+        
     }
 
     public void ToPatrolState()

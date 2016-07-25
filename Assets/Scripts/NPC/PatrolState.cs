@@ -34,10 +34,34 @@ public class PatrolState : NPCState {
 
     public void Patrolling()
     {
-        // Set the ai agents movement speed to patrol speed
-        npc.nav.speed = npc.walkSpeed;
-        // Create two Vector3 variables, one to buffer the ai agents local position, the other to
-        // buffer the next waypoints position
+        npc.nav.SetDestination(npc.waypoints[curWaypoint].position);
+
+        npc.nav.speed = 1.5f;
+        
+        npc.nav.updatePosition = false;
+        npc.nav.updateRotation = true;
+
+        npc.nav.nextPosition = npc.transform.position;
+        
+        Vector3 desiredVelocity = npc.transform.InverseTransformDirection(npc.nav.desiredVelocity.normalized);
+        desiredVelocity.Normalize();
+
+        float lastVSpeed = npc.npcAnimator.GetFloat("vSpeed");
+        float lastHSpeed = npc.npcAnimator.GetFloat("hSpeed");
+
+                
+        float vSpeed = Mathf.Lerp(lastVSpeed, desiredVelocity.z, 1f * Time.deltaTime/Mathf.Abs(lastVSpeed-desiredVelocity.z));
+        float hSpeed = Mathf.Lerp(lastHSpeed, desiredVelocity.x, 2 * Time.deltaTime/Mathf.Abs(lastHSpeed-desiredVelocity.x));
+
+        npc.npcAnimator.SetFloat("vSpeed",vSpeed);
+        npc.npcAnimator.SetFloat("hSpeed",hSpeed);
+        
+        //Debug.Log(npc);
+        //Debug.Log(vSpeed);
+        //Debug.Log(hSpeed);
+
+        //// Create two Vector3 variables, one to buffer the ai agents local position, the other to
+        //// buffer the next waypoints position
         Vector3 tempLocalPosition;
         Vector3 tempWaypointPosition;
 
@@ -50,8 +74,7 @@ public class PatrolState : NPCState {
         tempWaypointPosition.y = 0f;
 
         // Is the distance between the agent and the current waypoint within the minWaypointDistance?
-        if (Vector3.Distance(tempLocalPosition, tempWaypointPosition) <= npc.minWaypointDistance)
-        {
+        if (Vector3.Distance(tempLocalPosition, tempWaypointPosition) <= npc.minWaypointDistance) {
             // Have we reached the last waypoint?
             if (curWaypoint == npc.maxWaypoint)
                 // If so, go back to the first waypoint and start over again
@@ -60,10 +83,6 @@ public class PatrolState : NPCState {
                 // If we haven't reached the Last waypoint, just move on to the next one
                 curWaypoint++;
         }
-
-        // Set the destination for the agent
-        // The navmesh agent is going to do the rest of the work
-        npc.nav.SetDestination(npc.waypoints[curWaypoint].position);
     }
 
 
@@ -90,7 +109,9 @@ public class PatrolState : NPCState {
     }
     
     private void checkSuspicious() {
+        Debug.Log("called");
         if(npc.suspicious) {
+            Debug.Log("thing");
             ToSuspiciousState();
         }
     } 
@@ -106,8 +127,7 @@ public class PatrolState : NPCState {
 		if (npc.idleChance > 0) {
 			float chance = Random.Range(0f,100f);
 			if (npc.idleChance > chance) {
-                npc.npcAnimator.SetBool("idle", true);
-                npc.nav.velocity = new Vector3(0,0,0);
+
                 ToIdleState ();
 			}
 		}
