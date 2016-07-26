@@ -22,7 +22,7 @@ public class MenuScript : MonoBehaviour {
         quitMenu.enabled = true;
         startText.enabled = false;
         exitText.enabled = false;
-        ExitGame();
+        //ExitGame();
     }
 
     public void NoPress()
