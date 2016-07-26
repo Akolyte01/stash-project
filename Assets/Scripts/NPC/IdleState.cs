@@ -31,14 +31,14 @@ public class IdleState : NPCState{
         npc.npcAnimator.SetFloat("vSpeed",vSpeed);
         npc.npcAnimator.SetFloat("hSpeed",hSpeed);
 
-        Debug.Log(npc);
-        Debug.Log(vSpeed);
-        Debug.Log(hSpeed);
+        //Debug.Log(npc);
+        //Debug.Log(vSpeed);
+        //Debug.Log(hSpeed);
 
         //npc.npcAnimator.speed = 0;
         idleTimer += Time.deltaTime;
 		//goes back into Patrol after 4 seconds, unless IdleChance is 100% (always idling, for shoppers)
-		if (idleTimer > 3.0f && ( npc.idleChance < 100) ) {
+		if (idleTimer > npc.idleTime && ( npc.idleChance < 100) ) {
             ToPatrolState();
         }
 

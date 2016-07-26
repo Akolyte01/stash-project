@@ -20,17 +20,18 @@ public class PatrolState : NPCState {
 
         checkSuspicious();
         checkAlerted();
-	
-		//every 5 second or so, check to enter idle
-		idleChecker += Time.deltaTime;
-		if (idleChecker > 5.0f) {
-			idleChecker = 0f;
-			checkIdleChance();
-		}
+
+        //every 5 second or so, check to enter idle
+        idleChecker -= Time.deltaTime;
+        if (idleChecker <= 0.0f) {
+            idleChecker = Random.Range(1.0f,5.0f);
+            checkIdleChance();
+        }
 
         Patrolling();
 
     }
+
 
     public void Patrolling()
     {
@@ -82,6 +83,9 @@ public class PatrolState : NPCState {
             else
                 // If we haven't reached the Last waypoint, just move on to the next one
                 curWaypoint++;
+
+            if (npc.pausesAtWaypoints)
+                ToIdleState();
         }
     }
 
@@ -109,9 +113,7 @@ public class PatrolState : NPCState {
     }
     
     private void checkSuspicious() {
-        Debug.Log("called");
         if(npc.suspicious) {
-            Debug.Log("thing");
             ToSuspiciousState();
         }
     } 

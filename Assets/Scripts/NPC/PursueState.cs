@@ -8,6 +8,7 @@ using System;
 public class PursueState : NPCState{
     private readonly NPC npc;
     private float secondsInAdvance = 3;
+    private float countDown = 0.0f;
     GameObject player = GameObject.FindGameObjectWithTag("Player");
 
     public PursueState(NPC npc) {
@@ -16,14 +17,9 @@ public class PursueState : NPCState{
 
     public void UpdateState()
     {
+        handleSound();
 
-        npc.npcAnimator.SetBool("sprinting", true);
-        Vector3 finalPos = player.transform.position;
-        Vector3 velocity = player.GetComponent<Rigidbody>().velocity;
-        velocity *= secondsInAdvance;
-        finalPos += velocity;
-
-        npc.nav.SetDestination(finalPos);
+        npc.nav.SetDestination(player.transform.position);
 
         npc.nav.speed = 1.5f;
         
@@ -35,6 +31,8 @@ public class PursueState : NPCState{
         Vector3 desiredVelocity = npc.transform.InverseTransformDirection(npc.nav.desiredVelocity.normalized);
         desiredVelocity.Normalize();
 
+        npc.npcAnimator.SetBool("sprinting", true);
+
         float lastVSpeed = npc.npcAnimator.GetFloat("vSpeed");
         float lastHSpeed = npc.npcAnimator.GetFloat("hSpeed");
 
@@ -44,6 +42,14 @@ public class PursueState : NPCState{
 
         npc.npcAnimator.SetFloat("vSpeed",vSpeed);
         npc.npcAnimator.SetFloat("hSpeed",hSpeed);
+    }
+
+    private void handleSound() {
+        countDown -= Time.deltaTime;
+        if (countDown < 0) {
+            npc.playPursueSound();
+            countDown = UnityEngine.Random.Range(1.0f,3.0f);
+        }
     }
 
     public void ToPatrolState()
@@ -67,9 +73,9 @@ public class PursueState : NPCState{
     }
 
     public void TouchedPlayer() {
-        Debug.Log("boop");
         npc.npcAnimator.SetBool("sprinting", false);
         npc.player.caught = true;
-        ToIdleState();
+        npc.alerted = false;
+        ToSuspiciousState();
     }
 }

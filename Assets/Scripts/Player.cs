@@ -11,8 +11,10 @@ public class Player : MonoBehaviour {
     CapsuleCollider playerCollider;
     CharacterController playerController;
     MouseLook mouseLook;
+
     [HideInInspector] public bool stealing = false;
     [HideInInspector] public bool caught = false;
+    [HideInInspector] public AudioSource audio;
 
 	bool ragdollMode = false;
 
@@ -23,6 +25,7 @@ public class Player : MonoBehaviour {
         playerCollider = GetComponent<CapsuleCollider>();
         playerController = GetComponent<CharacterController>();
         mouseLook = GetComponent<MouseLook>();
+        audio = GetComponent<AudioSource>();
         HandleRagdoll();
     }
 	

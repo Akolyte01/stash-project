@@ -15,11 +15,17 @@ public class NPC : MonoBehaviour {
     public float penaltyMult;
     public bool willPursue;
     public float idleChance; //should be between 0 and 100
+    public float idleTime;
+    public bool pausesAtWaypoints;
     public Transform[] waypoints;
 
     public float minWaypointDistance = 0.1f;
 
     public Player player;
+
+    public AudioClip alertSound;
+    public AudioClip[] pursueSounds;
+    AudioSource audio;
 
 
     [HideInInspector] public NPCState currentState;
@@ -32,6 +38,9 @@ public class NPC : MonoBehaviour {
     [HideInInspector] public bool suspicious;
     [HideInInspector] public NavMeshAgent nav;
     [HideInInspector] public int maxWaypoint;
+    
+
+
 
 
     // Use this for initialization
@@ -49,12 +58,25 @@ public class NPC : MonoBehaviour {
     void Start() {
         currentState = patrolState;
         alerted = false;
+        audio = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
 	void Update () {
 	    currentState.UpdateState();
 	}
+
+    public void playAlertSound() {
+        audio.PlayOneShot(alertSound, .5f); 
+    }
+
+    public void playPursueSound() {
+        if(pursueSounds.Length > 0) {
+            audio.PlayOneShot(pursueSounds[Random.Range(0,pursueSounds.Length)]);
+        }
+        
+    }
+
 
     // returns -1 if no sight to object, otherwise returns distance to object.
     public float CanSee(GameObject theObject)
@@ -76,13 +98,14 @@ public class NPC : MonoBehaviour {
 
                 if (rootTransform.gameObject == theObject)
                 {
-                    Debug.DrawRay(outerPoint,vectorToObject);
+                    //Debug.DrawRay(outerPoint,vectorToObject);
                     return hit.distance;
                     
-                } else { Debug.Log(rootTransform.gameObject); } 
+                } else { //Debug.Log(rootTransform.gameObject); 
+                } 
             }
         }
-        Debug.DrawRay(outerPoint,vectorToObject,Color.white, 1, false);
+        //Debug.DrawRay(outerPoint,vectorToObject,Color.white, 1, false);
         return -1.0f;
     }
 
@@ -96,11 +119,17 @@ public class NPC : MonoBehaviour {
     }
 
     public void OnTriggerEnter(Collider collider) {
+        //Debug.Log("------");
+        //Debug.Log(gameObject);
+        //Debug.Log(collider);
+        
+
          Transform rootTransform = collider.transform;
          while(rootTransform.parent != null){
             rootTransform = rootTransform.parent;
          }
 
+         //Debug.Log(rootTransform.gameObject);
          if(rootTransform.gameObject == player.gameObject) {
             currentState.TouchedPlayer();
          }
