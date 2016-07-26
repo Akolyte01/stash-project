@@ -19,9 +19,9 @@ public class MenuScript : MonoBehaviour {
 	
 	public void ExitPress()
     {
-        //quitMenu.enabled = true;
-        //startText.enabled = false;
-        //exitText.enabled = false;
+        quitMenu.enabled = true;
+        startText.enabled = false;
+        exitText.enabled = false;
         ExitGame();
     }
 
