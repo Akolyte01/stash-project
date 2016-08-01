@@ -11,7 +11,10 @@ public class MasterController : MonoBehaviour {
     public GameObject stealablesHolder;
     public Animator gameEndAnimator;
     Stealable[] stealables;
-    // Use this for initialization
+
+	public Texture2D cursorTexture;
+	public CursorMode cursorMode = CursorMode.Auto;
+	public Vector2 hotSpot = Vector2.zero;
 
     public float suspicionLevel;
     public float score;
@@ -56,6 +59,42 @@ public class MasterController : MonoBehaviour {
 
             player.stealing = false;
         }
+
+
+
+
+
+		//casting rays at where player is looking to find cans, then display grab cursor icon
+		RaycastHit hit;
+		//Debug.DrawRay(player.transform.FindChild("EyeLevel").transform.position, player.transform.forward, Color.red);
+		if (Physics.Raycast (player.transform.FindChild("EyeLevel").transform.position, player.transform.forward, out hit)) {
+			print ("Found an object - distance: " + hit.distance);
+			//Debug.Log (hit.transform.gameObject);
+			if (hit.transform.gameObject.tag == "Stealable") {
+				if (hit.distance < 1.3) { //the can's grabdistance attribute, I'm being lazy by not getting it directly
+					Debug.Log ("HAND");
+
+
+					Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+					
+				}
+				else {
+					Debug.Log ("no");
+					Cursor.SetCursor(null, Vector2.zero, cursorMode);
+				}
+			} else {
+				Debug.Log ("no");
+				Cursor.SetCursor(null, Vector2.zero, cursorMode);
+			}
+		} else {
+			Debug.Log ("no");
+			Cursor.SetCursor(null, Vector2.zero, cursorMode);
+		}
+
+
+
+
+
 
         if (score < 100) {
             gotEnough = false;

@@ -20,10 +20,10 @@ public class Stealable : MonoBehaviour {
     public bool canBeStolen (){
         Vector3 vectorToPlayer = player.transform.position - transform.position;
         vectorToPlayer.y = 0;
-        RaycastHit hit;
+		RaycastHit hit;
         if(Vector3.Angle(player.transform.forward, vectorToPlayer*-1f) < 20) {
             if(Physics.Raycast(transform.position, vectorToPlayer, out hit, grabDistance) ) {
-                Transform rootTransform = hit.transform;
+				Transform rootTransform = hit.transform;
                 while(rootTransform.parent != null)
                 {
                     rootTransform = rootTransform.parent;
