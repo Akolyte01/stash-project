@@ -71,7 +71,10 @@ public class MasterController : MonoBehaviour {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 7ea8c547f2671d40d53b7fe4811216eb27a366d0
 
 
 		//casting rays at where player is looking to find cans, then display grab cursor icon
@@ -106,6 +109,9 @@ public class MasterController : MonoBehaviour {
 
 
 
+<<<<<<< HEAD
+>>>>>>> 7ea8c547f2671d40d53b7fe4811216eb27a366d0
+=======
 >>>>>>> 7ea8c547f2671d40d53b7fe4811216eb27a366d0
         if (score < 100) {
             gotEnough = false;
