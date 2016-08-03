@@ -11,7 +11,10 @@ public class MasterController : MonoBehaviour {
     public GameObject stealablesHolder;
     public Animator gameEndAnimator;
     Stealable[] stealables;
-    // Use this for initialization
+
+	public Texture2D cursorTexture;
+	public CursorMode cursorMode = CursorMode.Auto;
+	public Vector2 hotSpot = Vector2.zero;
 
     public float suspicionLevel;
     public float score;
@@ -26,7 +29,7 @@ public class MasterController : MonoBehaviour {
 
 	void Start () {
         suspicionLevel = 0.0f;
-        score = 0.0f;
+        score = 0f;
         //stealables = stealablesHolder.GetComponentsInChildren<Stealable>();
         stealables = FindObjectsOfType<Stealable>();
         //Debug.Log(stealables[0]);
@@ -34,29 +37,76 @@ public class MasterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (player.stealing)
-        {
-            foreach(Stealable stealable in stealables) {
-                if (stealable != null && stealable.canBeStolen()){
+
+        foreach (Stealable stealable in stealables) {
+            if (stealable != null && stealable.canBeStolen()) {
+                stealable.isHighlighted = true;
+                if (player.stealing) {
                     score += stealable.points;
-                    player.audio.PlayOneShot(stealClip,.7f);
-                    foreach(NPC npc in NPCs)
-                    {
-                        if (npc.CanSee(player.gameObject) != -1.0f)
-                        {
+                    player.audio.PlayOneShot(stealClip, .7f);
+                    foreach (NPC npc in NPCs) {
+                        if (npc.CanSee(player.gameObject) != -1.0f) {
                             suspicionLevel += npc.penaltyMult;
                             npc.suspicious = true;
-                            npc.playAlertSound(); 
+                            npc.playAlertSound();
                         }
                     }
                     DestroyObject(stealable.gameObject);
-                    break;
                 }
+                break;
+            } else {
+                stealable.isHighlighted = false;
             }
+        }
+        player.stealing = false;
+        
+        if(player.sprinting && score > 0) { 
+            if(score%5 - 5*Time.deltaTime < 0) {
+                player.DropItem();
+            }
+            score -= 5*Time.deltaTime;
 
-            player.stealing = false;
         }
 
+
+
+<<<<<<< HEAD
+=======
+
+
+		//casting rays at where player is looking to find cans, then display grab cursor icon
+		RaycastHit hit;
+		//Debug.DrawRay(player.transform.FindChild("EyeLevel").transform.position, player.transform.forward, Color.red);
+		if (Physics.Raycast (player.transform.FindChild("EyeLevel").transform.position, player.transform.forward, out hit)) {
+			print ("Found an object - distance: " + hit.distance);
+			//Debug.Log (hit.transform.gameObject);
+			if (hit.transform.gameObject.tag == "Stealable") {
+				if (hit.distance < 1.3) { //the can's grabdistance attribute, I'm being lazy by not getting it directly
+					Debug.Log ("HAND");
+
+
+					Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+					
+				}
+				else {
+					Debug.Log ("no");
+					Cursor.SetCursor(null, Vector2.zero, cursorMode);
+				}
+			} else {
+				Debug.Log ("no");
+				Cursor.SetCursor(null, Vector2.zero, cursorMode);
+			}
+		} else {
+			Debug.Log ("no");
+			Cursor.SetCursor(null, Vector2.zero, cursorMode);
+		}
+
+
+
+
+
+
+>>>>>>> 7ea8c547f2671d40d53b7fe4811216eb27a366d0
         if (score < 100) {
             gotEnough = false;
         }
@@ -65,7 +115,22 @@ public class MasterController : MonoBehaviour {
             player.audio.PlayOneShot(enoughPointsClip,.7f);
         }
 
-        if (suspicionLevel >= 25) {
+        //foreach (NPC npc in NPCs) {
+        //    if (npc.CanSee(player.gameObject) != -1.0f) {
+        //        suspicionLevel += (score + suspicionLevel) / 20 * Time.deltaTime;
+        //    }
+        //}
+        //if(suspicionLevel >= 0) {
+        //    suspicionLevel -= 2 * Time.deltaTime;
+        //}
+
+
+        if (score <= 0 && suspicionLevel > 0) {
+            suspicionLevel -= 2 * Time.deltaTime;
+        }
+        suspicionLevel += (score + (score * suspicionLevel / 100)) / 50 * Time.deltaTime;
+
+        if (suspicionLevel >= 100) {
             foreach(NPC npc in NPCs) {
                 npc.alerted = true;
             }

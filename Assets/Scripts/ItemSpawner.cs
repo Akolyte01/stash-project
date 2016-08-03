@@ -9,7 +9,9 @@ public class ItemSpawner : MonoBehaviour {
 
     void Awake() {
         for(int i = 0; i < numItems; i++) {
-            Instantiate(item, transform.position + transform.forward * (i * distanceBetween), Quaternion.identity);
+            if(Random.value > .5) {
+                Instantiate(item, transform.position + transform.forward * (i * distanceBetween), Quaternion.identity);
+            }            
         }
     }
 
