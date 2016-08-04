@@ -44,13 +44,22 @@ public class MasterController : MonoBehaviour {
                 if (player.stealing) {
                     score += stealable.points;
                     player.audio.PlayOneShot(stealClip, .7f);
+                    float maxPenalty = 0f;
                     foreach (NPC npc in NPCs) {
-                        if (npc.CanSee(player.gameObject) != -1.0f) {
-                            suspicionLevel += npc.penaltyMult;
+                        float distToPlayerSeen = npc.CanSee(player.gameObject);
+                        if (distToPlayerSeen != -1.0f) {
+                            float penalty = npc.penaltyMult * Mathf.Sqrt((npc.perceptionDistance - distToPlayerSeen) / npc.perceptionDistance); 
+                            Debug.Log(distToPlayerSeen);
+                            Debug.Log(npc.perceptionDistance);
+                            Debug.Log(npc.penaltyMult);
+                            Debug.Log(penalty);
+                            if(penalty > maxPenalty) maxPenalty = penalty;
+                            //suspicionLevel += npc.penaltyMult;
                             npc.suspicious = true;
                             npc.playAlertSound();
                         }
                     }
+                    suspicionLevel += maxPenalty;
                     DestroyObject(stealable.gameObject);
                 }
                 break;
@@ -115,6 +124,7 @@ public class MasterController : MonoBehaviour {
 
     void Win() {
         player.audio.PlayOneShot(winClip,.9f);
+        Debug.Log("win");
         gameEndAnimator.SetTrigger("GameWin");
     }
 
