@@ -69,50 +69,6 @@ public class MasterController : MonoBehaviour {
         }
 
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 7ea8c547f2671d40d53b7fe4811216eb27a366d0
-
-
-		//casting rays at where player is looking to find cans, then display grab cursor icon
-		RaycastHit hit;
-		//Debug.DrawRay(player.transform.FindChild("EyeLevel").transform.position, player.transform.forward, Color.red);
-		if (Physics.Raycast (player.transform.FindChild("EyeLevel").transform.position, player.transform.forward, out hit)) {
-			print ("Found an object - distance: " + hit.distance);
-			//Debug.Log (hit.transform.gameObject);
-			if (hit.transform.gameObject.tag == "Stealable") {
-				if (hit.distance < 1.3) { //the can's grabdistance attribute, I'm being lazy by not getting it directly
-					Debug.Log ("HAND");
-
-
-					Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
-					
-				}
-				else {
-					Debug.Log ("no");
-					Cursor.SetCursor(null, Vector2.zero, cursorMode);
-				}
-			} else {
-				Debug.Log ("no");
-				Cursor.SetCursor(null, Vector2.zero, cursorMode);
-			}
-		} else {
-			Debug.Log ("no");
-			Cursor.SetCursor(null, Vector2.zero, cursorMode);
-		}
-
-
-
-
-
-
-<<<<<<< HEAD
->>>>>>> 7ea8c547f2671d40d53b7fe4811216eb27a366d0
-=======
->>>>>>> 7ea8c547f2671d40d53b7fe4811216eb27a366d0
         if (score < 100) {
             gotEnough = false;
         }
