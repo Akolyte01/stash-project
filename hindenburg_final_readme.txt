@@ -4,10 +4,10 @@
 i.
 ————
 Created by:
-Scott Beale, sbeale3@gatech.edu, sbeale3
-Olivia LaHay, olahay3@gatech.edu, olahay3
-Jeffrey Hsu, jhsu44@gatech.edu, jhsu44
-Stephanie Dykes, 
+Scott Beale, sbeale3@gatech.edu, sbeale3 - most of the code, audio editing, variable adjustment
+Olivia LaHay, olahay3@gatech.edu, olahay3 - menus, additional coding, npc models
+Jeffrey Hsu, jhsu44@gatech.edu, jhsu44 - presentation, testing, npc models
+Stephanie Dykes, - level set up and design, asset acquisition, 
 
 ————
 ii.
