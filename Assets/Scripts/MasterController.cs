@@ -61,11 +61,11 @@ public class MasterController : MonoBehaviour {
         player.stealing = false;
         
         if(player.sprinting && score > 0) { 
-            if(score%5 - 5*Time.deltaTime < 0) {
+            if(score%5 - 3.5f*Time.deltaTime < 0) {
                 player.DropItem();
             }
-            score -= 5*Time.deltaTime;
-
+            score -= 3.5f*Time.deltaTime;
+            if (score < 0) score = 0;
         }
 
 
