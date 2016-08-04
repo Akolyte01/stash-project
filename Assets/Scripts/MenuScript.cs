@@ -34,7 +34,8 @@ public class MenuScript : MonoBehaviour {
 
     public void StartLevel()
     {
-
+        // fadeTime = GameObject.Find("Main Camera").GetComponent<FadeScene>().BeginFade(1);
+        //yield return new WaitForSeconds(fadeTime);
         SceneManager.LoadScene("DefaultScene");
     }
 

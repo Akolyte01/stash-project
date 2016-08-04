@@ -28,7 +28,7 @@ public class FadeScene : MonoBehaviour {
 
     void OnLevelWasLoaded ()
     {
-        alpha = 1;
+        //alpha = 1;
         BeginFade(-1);
     }
 }
