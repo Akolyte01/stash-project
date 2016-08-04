@@ -49,10 +49,6 @@ public class MasterController : MonoBehaviour {
                         float distToPlayerSeen = npc.CanSee(player.gameObject);
                         if (distToPlayerSeen != -1.0f) {
                             float penalty = npc.penaltyMult * Mathf.Sqrt((npc.perceptionDistance - distToPlayerSeen) / npc.perceptionDistance); 
-                            Debug.Log(distToPlayerSeen);
-                            Debug.Log(npc.perceptionDistance);
-                            Debug.Log(npc.penaltyMult);
-                            Debug.Log(penalty);
                             if(penalty > maxPenalty) maxPenalty = penalty;
                             //suspicionLevel += npc.penaltyMult;
                             npc.suspicious = true;

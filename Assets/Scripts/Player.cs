@@ -39,7 +39,7 @@ public class Player : MonoBehaviour {
         HandleMovement();
         HandleScaling();
 
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown("e") || Input.GetMouseButtonDown(0)) 
         {
             stealing = true;
         }
